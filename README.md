@@ -13,7 +13,6 @@ A smart, real-time attendance tracking platform featuring a web-based UI, class 
 
 ![Live Project Demo](demo.gif)
 
-
 ## 📋 Problem Statement
 
 Traditional methods of tracking attendance are inefficient, prone to human error, and susceptible to fraud like proxy attendance. This project solves these issues by providing a "touchless," automated, and secure system that can accurately track attendance without disrupting the flow of a lecture or meeting.
@@ -38,46 +37,14 @@ The application is built on a robust client-server model:
 
 ## 🖼️ Screenshots
 
-| Setup Page | Live Dashboard (Attendance Active - User 1) |
+| Setup Page | Live Dashboard (Attendance Active) |
 | :---: | :---: |
-| ![Setup Page](screenshots/image.png) | ![Live Dashboard User 1](screenshots/image2.png) |
+| *Select a scheduled class to begin the session.* | *Real-time recognition with session log.* |
+| ![Setup Page Screenshot](screenshots/image.png) | ![Dashboard Screenshot](screenshots/image2.jpg) |
 
-| Live Dashboard (Attendance Active - User 2) | Live Dashboard (Session Ended) |
+| Live Dashboard (Another User) | Live Dashboard (Session Ended) |
 | :---: | :---: |
-| ![Live Dashboard User 2](screenshots/image3.png) | ![Session Ended](screenshots/image4.png) |
-
-## 📂 Project Structure
-
-```
-/Face_Recognition_Project/
-├── backend/
-│   ├── api.py
-│   ├── database.py
-│   └── recognition.py
-├── frontend/
-│   └── templates/
-│       ├── setup.html
-│       └── dashboard.html
-├── data/
-│   ├── students/
-│   │   ├── sachin.jpg
-│   │   ├── siddhart.jpg
-│   │   └── yash.jpg
-│   └── teachers/
-│       ├── himanshu.jpg
-│       ├── mohit.jpg
-│       └── mohit2.jpg
-├── screenshots/
-│   ├── image.png
-│   ├── image2.png
-│   ├── image3.png
-│   └── image4.png
-├── register_faces.py
-├── setup_schedule.py
-├── run_backend.py
-├── requirements.txt
-└── README.md
-```
+| ![Live Dashboard User 2](screenshots/image3.jpg) | ![Session Ended](screenshots/image4.jpg) |
 
 ## 🚀 Getting Started
 
@@ -90,14 +57,13 @@ Follow these steps to set up and run the project on your local machine.
 
 ### 1. Clone the Repository
 ```bash
-git clone [https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git)
-cd YOUR_REPOSITORY_NAME
-2. Set Up a Virtual Environment
+git clone [https://github.com/mohitrock850/Intelligent-Attendance-System.git](https://github.com/mohitrock850/Intelligent-Attendance-System.git)
+cd Intelligent-Attendance-System
+```
+
+### 2. Set Up a Virtual Environment
 This keeps your project dependencies isolated.
-
-
-Bash
-
+```bash
 # For macOS/Linux
 python3 -m venv venv
 source venv/bin/activate
@@ -105,20 +71,20 @@ source venv/bin/activate
 # For Windows
 python -m venv venv
 .\venv\Scripts\activate
-3. Install Dependencies
-Bash
+```
 
+### 3. Install Dependencies
+```bash
 pip install -r requirements.txt
-4. Configure the Database
-Open the backend/database.py file.
+```
 
-Update the MONGO_CONNECTION_STRING variable with your own MongoDB connection details.
+### 4. Configure the Database
+- Open the `backend/database.py` file.
+- Update the `MONGO_CONNECTION_STRING` variable with your own MongoDB connection details.
 
-5. Run the One-Time Setup Scripts
+### 5. Run the One-Time Setup Scripts
 These scripts will create the database collections, register your sample users, and set up a schedule for today.
-
-Bash
-
+```bash
 # 1. Initialize the database collections and indexes
 python backend/database.py
 
@@ -127,27 +93,22 @@ python register_faces.py
 
 # 3. Create a sample schedule for the current day
 python setup_schedule.py
-6. Launch the Application
-Bash
+```
 
+### 6. Launch the Application
+```bash
 python run_backend.py
-The server will start. Now, open your web browser and navigate to https://www.google.com/search?q=http://127.0.0.1:5000/ to begin.
+```
+The server will start. Now, open your web browser and navigate to **http://127.0.0.1:5000/** to begin.
 
-⚠️ Important Notes & Potential Issues
-Face Recognition Accuracy: The accuracy of facial recognition can vary significantly based on:
+---
 
-Training Data: The quality and quantity of images used to register faces. Ensure faces are well-lit, frontal, and free from obstructions.
+## ⚠️ Important Notes & Potential Issues
 
-Lighting Conditions: Poor lighting can drastically reduce recognition performance.
-
-Camera Quality: A higher-resolution webcam will generally yield better results.
-
-DeepFace Model: While powerful, DeepFace (or any AI model) is not 100% infallible.
-
-Device Compatibility:
-
-Webcam Access: Ensure your operating system grants Python/OpenCV access to your webcam.
-
-OpenCV Backend: Depending on your system (Windows, Linux, macOS), OpenCV might use different backends for camera access (e.g., MSMF on Windows, V4L2 on Linux). If you encounter WARN messages related to cap_msmf.cpp or similar, it might indicate a driver issue or a conflict with other applications using the camera. Trying a different webcam or restarting your computer can sometimes resolve this.
-
-Resource Usage: Real-time face recognition can be CPU-intensive. Performance may vary on older or less powerful machines.
+-   **Face Recognition Accuracy:** The accuracy of facial recognition can vary significantly based on:
+    -   **Training Data:** The quality and quantity of images used to register faces. Ensure faces are well-lit, frontal, and free from obstructions.
+    -   **Lighting Conditions:** Poor lighting can drastically reduce recognition performance.
+    -   **Camera Quality:** A higher-resolution webcam will generally yield better results.
+-   **Device Compatibility:**
+    -   **Webcam Access:** Ensure your operating system grants Python/OpenCV access to your webcam.
+    -   **Resource Usage:** Real-time face recognition can be CPU-intensive. Performance may vary on older or less powerful machines.
