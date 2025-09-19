@@ -11,7 +11,7 @@ A smart, real-time attendance tracking platform featuring a web-based UI, class 
 
 ## 🎥 Live Demo
 
-![Live Project Demo](demo.gif)
+![Live Project Demo](demo.gif) 
 
 ## 📋 Problem Statement
 
