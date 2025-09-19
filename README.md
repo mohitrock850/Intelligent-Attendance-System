@@ -11,7 +11,7 @@ A smart, real-time attendance tracking platform featuring a web-based UI, class 
 
 ## 🎥 Live Demo
 
-*(It is highly recommended to create a short GIF showcasing the workflow from the setup page to the live dashboard and paste it here. This is the most effective way to demonstrate your project.)*
+![Project Demo GIF Placeholder](screenshots/demo.png)
 
 ## 📋 Problem Statement
 
