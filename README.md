@@ -103,7 +103,8 @@ The server will start. Now, open your web browser and navigate to **http://127.0
 
 ---
 
-👥 Contributors
+**👥 Contributors**
+
 This project was developed by:
 
 Mohit - mohitrock850
