@@ -40,11 +40,11 @@ The application is built on a robust client-server model:
 | Setup Page | Live Dashboard (Attendance Active) |
 | :---: | :---: |
 | *Select a scheduled class to begin the session.* | *Real-time recognition with session log.* |
-| ![Setup Page Screenshot](screenshots/image.png) | ![Dashboard Screenshot](screenshots/image2.jpg) |
+| ![Setup Page Screenshot](screenshots/image.png) | ![Dashboard Screenshot](screenshots/image2.png) |
 
 | Live Dashboard (Another User) | Live Dashboard (Session Ended) |
 | :---: | :---: |
-| ![Live Dashboard User 2](screenshots/image3.jpg) | ![Session Ended](screenshots/image4.jpg) |
+| ![Live Dashboard User 2](screenshots/image3.png) | ![Session Ended](screenshots/image4.png) |
 
 ## 🚀 Getting Started
 
