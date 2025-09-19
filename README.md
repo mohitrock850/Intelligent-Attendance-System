@@ -13,8 +13,6 @@ A smart, real-time attendance tracking platform featuring a web-based UI, class 
 
 *(It is highly recommended to create a short GIF showcasing the workflow from the setup page to the live dashboard and paste it here. This is the most effective way to demonstrate your project.)*
 
-![Project Demo GIF Placeholder](screenshots/demo.png)
-
 ## 📋 Problem Statement
 
 Traditional methods of tracking attendance are inefficient, prone to human error, and susceptible to fraud like proxy attendance. This project solves these issues by providing a "touchless," automated, and secure system that can accurately track attendance without disrupting the flow of a lecture or meeting.
@@ -96,6 +94,7 @@ cd YOUR_REPOSITORY_NAME
 2. Set Up a Virtual Environment
 This keeps your project dependencies isolated.
 
+
 Bash
 
 # For macOS/Linux
@@ -151,4 +150,3 @@ Webcam Access: Ensure your operating system grants Python/OpenCV access to your 
 OpenCV Backend: Depending on your system (Windows, Linux, macOS), OpenCV might use different backends for camera access (e.g., MSMF on Windows, V4L2 on Linux). If you encounter WARN messages related to cap_msmf.cpp or similar, it might indicate a driver issue or a conflict with other applications using the camera. Trying a different webcam or restarting your computer can sometimes resolve this.
 
 Resource Usage: Real-time face recognition can be CPU-intensive. Performance may vary on older or less powerful machines.
-
