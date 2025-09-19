@@ -13,6 +13,7 @@ A smart, real-time attendance tracking platform featuring a web-based UI, class 
 
 ![Project Demo GIF Placeholder](demo.png)
 
+
 ## 📋 Problem Statement
 
 Traditional methods of tracking attendance are inefficient, prone to human error, and susceptible to fraud like proxy attendance. This project solves these issues by providing a "touchless," automated, and secure system that can accurately track attendance without disrupting the flow of a lecture or meeting.
