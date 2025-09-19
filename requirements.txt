@@ -1,0 +1,6 @@
+opencv-python
+deepface
+Flask
+Flask-Cors
+numpy
+pymongo

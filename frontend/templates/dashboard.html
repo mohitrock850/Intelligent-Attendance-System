@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Attendance Dashboard</title>
+    <style>
+        body { font-family: system-ui, sans-serif; margin: 0; background-color: #f0f2f5; color: #1c1e21; }
+        .header { background: white; padding: 10px 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
+        h1, h2 { margin: 0; }
+        h1 { font-size: 24px; }
+        .session-details { font-size: 16px; color: #606770; }
+        .container { display: flex; flex-wrap: wrap; padding: 20px; gap: 20px; }
+        .video-container, .log-container { flex: 1; min-width: 480px; background-color: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); overflow: hidden;}
+        .video-feed { width: 100%; display: block; background-color: #000; }
+        #log-table { width: 100%; border-collapse: collapse; }
+        #log-table th, #log-table td { text-align: left; padding: 12px 20px; border-bottom: 1px solid #ddd; }
+        #log-table th { background-color: #f5f6f7; }
+        /* --- NEW BUTTON STYLE --- */
+        #end-session-btn { padding: 10px 20px; border: none; border-radius: 6px; background-color: #fa3e3e; color: white; font-size: 14px; font-weight: bold; cursor: pointer; }
+        #end-session-btn:disabled { background-color: #d4d6d9; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <h1>{{ session_info.subject }}</h1>
+            <div class="session-details">
+                Teacher: {{ session_info.teacher }} | Location: {{ location }}
+            </div>
+        </div>
+        <button id="end-session-btn">End Attendance</button>
+    </div>
+    <div class="container">
+        <div class="video-container">
+            <h2>Live Camera Feed</h2>
+            <img id="video-feed-img" src="" class="video-feed" alt="Video Feed">
+        </div>
+        <div class="log-container">
+            <h2>Today's Session Log</h2>
+            <table id="log-table">
+                <thead><tr><th>Name</th><th>Role</th><th>Time</th></tr></thead>
+                <tbody id="attendance-log"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const scheduleId = '{{ session_info.schedule_id }}';
+        document.getElementById('video-feed-img').src = `/video_feed/${scheduleId}`;
+
+        async function fetchAttendance() {
+            try {
+                const response = await fetch(`/get_attendance/${scheduleId}`);
+                const data = await response.json();
+                const logBody = document.getElementById('attendance-log');
+                logBody.innerHTML = '';
+                data.forEach(rec => {
+                    logBody.innerHTML += `<tr><td>${rec.name}</td><td>${rec.role}</td><td>${rec.time}</td></tr>`;
+                });
+            } catch (error) {
+                console.error("Failed to fetch attendance:", error);
+            }
+        }
+        setInterval(fetchAttendance, 2000);
+        fetchAttendance();
+
+        // --- NEW JAVASCRIPT ---
+        const endSessionBtn = document.getElementById('end-session-btn');
+        endSessionBtn.addEventListener('click', async () => {
+            if (!confirm('Are you sure you want to end this attendance session?')) {
+                return;
+            }
+
+            endSessionBtn.disabled = true;
+            endSessionBtn.textContent = 'Ending...';
+
+            try {
+                const response = await fetch('/end_session', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ schedule_id: scheduleId })
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    alert('Session has been ended successfully.');
+                    endSessionBtn.textContent = 'Session Ended';
+                } else {
+                    throw new Error(data.error || 'Failed to end session.');
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+                endSessionBtn.disabled = false;
+                endSessionBtn.textContent = 'End Attendance';
+            }
+        });
+    </script>
+</body>
+</html>

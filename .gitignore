@@ -1,0 +1,18 @@
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+# This is the most important one! Never commit your venv folder.
+venv/
+.venv/
+
+# IDE / Editor-specific settings
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db

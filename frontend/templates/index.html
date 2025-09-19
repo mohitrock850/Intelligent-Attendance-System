@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Attendance Dashboard</title>
+    <style>
+        body { font-family: system-ui, sans-serif; margin: 0; background-color: #f0f2f5; color: #1c1e21; }
+        h1, h2 { padding: 20px 20px 0 20px; margin: 0; }
+        .container { display: flex; flex-wrap: wrap; padding: 20px; gap: 20px; }
+        .video-container, .log-container { flex: 1; min-width: 480px; background-color: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); overflow: hidden;}
+        .video-feed { width: 100%; display: block; background-color: #000; }
+        #log-table { width: 100%; border-collapse: collapse; }
+        #log-table th, #log-table td { text-align: left; padding: 12px 20px; border-bottom: 1px solid #ddd; }
+        #log-table th { background-color: #f5f6f7; }
+        #attendance-log tr:nth-child(even) { background-color: #f5f6f7; }
+    </style>
+</head>
+<body>
+    <h1>Live Face Recognition Attendance</h1>
+    <div class="container">
+        <div class="video-container">
+            <h2>Live Camera Feed</h2>
+            <img src="http://127.0.0.1:5000/video_feed" class="video-feed" alt="Video Feed">
+        </div>
+        <div class="log-container">
+            <h2>Today's Attendance Log</h2>
+            <table id="log-table">
+                <thead>
+                    <tr><th>Name</th><th>Role</th><th>Time</th></tr>
+                </thead>
+                <tbody id="attendance-log"></tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        // This script fetches the attendance log from the backend API every 2 seconds and updates the table.
+        async function fetchAttendance() {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/get_attendance');
+                const data = await response.json();
+                const logBody = document.getElementById('attendance-log');
+                logBody.innerHTML = ''; // Clear the table before adding new data
+                data.forEach(rec => {
+                    logBody.innerHTML += `<tr><td>${rec.name}</td><td>${rec.role}</td><td>${rec.time}</td></tr>`;
+                });
+            } catch (error) {
+                console.error("Failed to fetch attendance:", error);
+            }
+        }
+        setInterval(fetchAttendance, 2000); // Refresh log every 2 seconds
+        fetchAttendance(); // Fetch immediately when the page loads
+    </script>
+</body>
+</html>
