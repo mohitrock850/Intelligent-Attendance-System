@@ -103,6 +103,14 @@ The server will start. Now, open your web browser and navigate to **http://127.0
 
 ---
 
+👥 Contributors
+This project was developed by:
+
+Mohit - mohitrock850
+
+[Sachin Yadav] - [https://github.com/Sachinydv3/]
+
+
 ## ⚠️ Important Notes & Potential Issues
 
 -   **Face Recognition Accuracy:** The accuracy of facial recognition can vary significantly based on:
